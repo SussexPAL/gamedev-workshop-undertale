@@ -43,3 +43,10 @@ shape = SubResource("RectangleShape2D_j4aoe")
 [node name="Player" type="Sprite2D" parent="Player"]
 position = Vector2(151, -28)
 texture = ExtResource("1_j4aoe")
+
+[node name="Label" type="Label" parent="Player"]
+offset_left = 100.0
+offset_top = -120.0
+offset_right = 202.0
+offset_bottom = -80.0
+text = "this is a test"

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GameDev Workshop 2025 Fall"
+config/name="GameDev Workshop - Undertale Model Project"
 run/main_scene="uid://baqji3wqh34ny"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
