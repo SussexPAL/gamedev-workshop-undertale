@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://baqji3wqh34ny"]
+[gd_scene load_steps=6 format=3 uid="uid://baqji3wqh34ny"]
 
 [ext_resource type="Texture2D" uid="uid://dua71w0eg8th2" path="res://icon.svg" id="1_j4aoe"]
 [ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/player_movement.gd" id="2_j4aoe"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cmunl"]
+[sub_resource type="Gradient" id="Gradient_j4aoe"]
+colors = PackedColorArray(0, 0.6313726, 0, 1, 0.3721201, 0.72204155, 0.31473503, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cmunl"]
+gradient = SubResource("Gradient_j4aoe")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4aoe"]
 size = Vector2(121.67833, 125.87413)
@@ -13,8 +17,8 @@ physics_interpolation_mode = 1
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(8.500015, 11.4999695)
-scale = Vector2(1151, 644.99994)
-texture = SubResource("PlaceholderTexture2D_cmunl")
+scale = Vector2(26.328125, 16.453125)
+texture = SubResource("GradientTexture2D_cmunl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(34, -2)
