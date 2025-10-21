@@ -3,6 +3,9 @@ extends Node
 This class is responsible for emitting global signals for nodes to listen to.
 It should be added as an autoload - it will be present in every single scene.
 
-Should be accessed via $SignalManager
+Should be accessed via $SignalManager, and used to decouple any signals that
+are generally/globally useful.
+
+$SignalManager.SIGNAL_NAME.emit()
 """
 signal PLAYER_INTERACT_REQUEST # Emits when player presses the interact key
