@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://baqji3wqh34ny"]
+[gd_scene load_steps=16 format=3 uid="uid://baqji3wqh34ny"]
 
+[ext_resource type="Script" uid="uid://wmnvbygpv4n6" path="res://scripts/NPC.gd" id="1_h1gsm"]
 [ext_resource type="Texture2D" uid="uid://dua71w0eg8th2" path="res://icon.svg" id="1_j4aoe"]
-[ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/player_movement.gd" id="2_j4aoe"]
+[ext_resource type="Script" uid="uid://bkdhrx6w385ky" path="res://scripts/InteractableArea.gd" id="2_cmunl"]
+[ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/Player.gd" id="2_j4aoe"]
+[ext_resource type="FontFile" uid="uid://buwy42dx6d2lq" path="res://fonts/Minecraft.ttf" id="3_d3xhb"]
 
 [sub_resource type="Gradient" id="Gradient_j4aoe"]
 colors = PackedColorArray(0, 0.6313726, 0, 1, 0.3721201, 0.72204155, 0.31473503, 1)
@@ -11,6 +14,132 @@ gradient = SubResource("Gradient_j4aoe")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4aoe"]
 size = Vector2(121.67833, 125.87413)
+
+[sub_resource type="Animation" id="Animation_66tf5"]
+resource_name = "pulse"
+length = 0.13333668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.285, 1.285), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hsfv8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_opxuv"]
+_data = {
+&"RESET": SubResource("Animation_hsfv8"),
+&"pulse": SubResource("Animation_66tf5")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4aoe"]
+radius = 161.37534
+
+[sub_resource type="Animation" id="Animation_h1gsm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d3xhb"]
+resource_name = "float"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.3, 6.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6.745), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5666666, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.4333334, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.01745329251994329, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_66tf5"]
+_data = {
+&"RESET": SubResource("Animation_h1gsm"),
+&"float": SubResource("Animation_d3xhb")
+}
 
 [node name="Scene" type="Node2D"]
 physics_interpolation_mode = 1
@@ -24,33 +153,68 @@ texture = SubResource("GradientTexture2D_cmunl")
 position = Vector2(34, -2)
 scale = Vector2(1.3986014, 1.3986014)
 zoom = Vector2(0.765, 0.765)
+process_callback = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(363, -29)
+[node name="NPC_Jeremy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("anim")]
+position = Vector2(652, -60)
+script = ExtResource("1_h1gsm")
+anim = NodePath("AnimationPlayer")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="Collider" type="CollisionShape2D" parent="NPC_Jeremy"]
 shape = SubResource("RectangleShape2D_j4aoe")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="NPC_Jeremy"]
+self_modulate = Color(0.99999994, 0.2157974, 0.12635109, 1)
 rotation = -3.1415925
 texture = ExtResource("1_j4aoe")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPC_Jeremy"]
+libraries = {
+&"": SubResource("AnimationLibrary_opxuv")
+}
+
+[node name="InteractableArea" type="Area2D" parent="NPC_Jeremy" node_paths=PackedStringArray("input_prompt", "prompt_animator")]
+script = ExtResource("2_cmunl")
+input_prompt = NodePath("Node2D/Label")
+prompt_animator = NodePath("AnimationPlayer")
+
+[node name="InteractionRange" type="CollisionShape2D" parent="NPC_Jeremy/InteractableArea"]
+shape = SubResource("CircleShape2D_j4aoe")
+
+[node name="Node2D" type="Node2D" parent="NPC_Jeremy/InteractableArea"]
+
+[node name="Label" type="Label" parent="NPC_Jeremy/InteractableArea/Node2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_right = 70.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_d3xhb")
+text = "[F] TO INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPC_Jeremy/InteractableArea"]
+libraries = {
+&"": SubResource("AnimationLibrary_66tf5")
+}
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 physics_interpolation_mode = 1
+position = Vector2(-249, -60)
 script = ExtResource("2_j4aoe")
+move_speed = 500.0
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(153, -28.000004)
 shape = SubResource("RectangleShape2D_j4aoe")
 
 [node name="Player" type="Sprite2D" parent="Player"]
-position = Vector2(151, -28)
 texture = ExtResource("1_j4aoe")
 
-[node name="Label" type="Label" parent="Player"]
-offset_left = 100.0
-offset_top = -120.0
-offset_right = 202.0
-offset_bottom = -80.0
-text = "this is a test"
+[connection signal="body_entered" from="NPC_Jeremy/InteractableArea" to="NPC_Jeremy/InteractableArea" method="_on_body_entered"]
+[connection signal="body_exited" from="NPC_Jeremy/InteractableArea" to="NPC_Jeremy/InteractableArea" method="_on_body_exited"]
