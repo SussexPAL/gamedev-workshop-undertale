@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://baqji3wqh34ny"]
+[gd_scene load_steps=17 format=3 uid="uid://baqji3wqh34ny"]
 
 [ext_resource type="Texture2D" uid="uid://dua71w0eg8th2" path="res://icon.svg" id="1_j4aoe"]
 [ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/player_movement.gd" id="2_j4aoe"]
+[ext_resource type="Script" uid="uid://ctmsvo3l051gb" path="res://scripts/simulated_movement_example.gd" id="3_cmunl"]
+[ext_resource type="Texture2D" uid="uid://bjw8klfevblbh" path="res://assets/Minimal Dungeon - Asset Pack DEMO/Players/Dwarf/dwarf x1.png" id="3_d3xhb"]
 
 [sub_resource type="Gradient" id="Gradient_j4aoe"]
 colors = PackedColorArray(0, 0.44313726, 0, 1, 0.4293986, 0.903476, 0.5744499, 1)
@@ -11,6 +13,55 @@ gradient = SubResource("Gradient_j4aoe")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4aoe"]
 size = Vector2(121.67833, 125.87413)
+
+[sub_resource type="Gradient" id="Gradient_cmunl"]
+offsets = PackedFloat32Array(0, 0.66, 1)
+colors = PackedColorArray(0.2513166, 0.222422, 0, 1, 0.74544764, 0.7356235, 0.66, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d3xhb"]
+gradient = SubResource("Gradient_cmunl")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1gsm"]
+atlas = ExtResource("3_d3xhb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tf5"]
+atlas = ExtResource("3_d3xhb")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsfv8"]
+atlas = ExtResource("3_d3xhb")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opxuv"]
+atlas = ExtResource("3_d3xhb")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dlkmh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1gsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66tf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsfv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opxuv")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cmunl"]
+bounce = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmunl"]
+size = Vector2(126, 120)
 
 [node name="Scene" type="Node2D"]
 physics_interpolation_mode = 1
@@ -36,9 +87,16 @@ shape = SubResource("RectangleShape2D_j4aoe")
 rotation = -3.1415925
 texture = ExtResource("1_j4aoe")
 
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(1.5258789e-05, -0.9999962)
+scale = Vector2(2.0625005, 1.90625)
+texture = SubResource("GradientTexture2D_d3xhb")
+
 [node name="Player" type="CharacterBody2D" parent="."]
 physics_interpolation_mode = 1
+motion_mode = 1
 script = ExtResource("2_j4aoe")
+move_speed = 200.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -46,5 +104,28 @@ position = Vector2(153, -28.000004)
 shape = SubResource("RectangleShape2D_j4aoe")
 
 [node name="Player" type="Sprite2D" parent="Player"]
+visible = false
+texture_filter = 1
 position = Vector2(151, -28)
+texture = ExtResource("3_d3xhb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dlkmh")
+animation = &"run_right"
+frame_progress = 0.21272919
+
+[node name="RigidBody2D_Player" type="RigidBody2D" parent="."]
+visible = false
+position = Vector2(153, -222)
+physics_material_override = SubResource("PhysicsMaterial_cmunl")
+linear_damp = 1.0
+script = ExtResource("3_cmunl")
+move_force = 3000.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D_Player"]
+shape = SubResource("RectangleShape2D_cmunl")
+
+[node name="Player" type="Sprite2D" parent="RigidBody2D_Player"]
 texture = ExtResource("1_j4aoe")
