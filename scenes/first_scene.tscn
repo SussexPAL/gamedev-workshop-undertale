@@ -1,9 +1,62 @@
-[gd_scene load_steps=17 format=3 uid="uid://baqji3wqh34ny"]
+[gd_scene load_steps=21 format=4 uid="uid://baqji3wqh34ny"]
 
+[ext_resource type="Texture2D" uid="uid://cp0wo3cbx7lrp" path="res://assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="1_h1gsm"]
 [ext_resource type="Texture2D" uid="uid://dua71w0eg8th2" path="res://icon.svg" id="1_j4aoe"]
 [ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/player_movement.gd" id="2_j4aoe"]
+[ext_resource type="Script" uid="uid://bt5qxuytrs6s6" path="res://scenes/interactable_area.gd" id="3_66tf5"]
 [ext_resource type="Script" uid="uid://ctmsvo3l051gb" path="res://scripts/simulated_movement_example.gd" id="3_cmunl"]
 [ext_resource type="Texture2D" uid="uid://bjw8klfevblbh" path="res://assets/Minimal Dungeon - Asset Pack DEMO/Players/Dwarf/dwarf x1.png" id="3_d3xhb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_66tf5"]
+texture = ExtResource("1_h1gsm")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hsfv8"]
+sources/0 = SubResource("TileSetAtlasSource_66tf5")
 
 [sub_resource type="Gradient" id="Gradient_j4aoe"]
 colors = PackedColorArray(0, 0.44313726, 0, 1, 0.4293986, 0.903476, 0.5744499, 1)
@@ -12,14 +65,10 @@ colors = PackedColorArray(0, 0.44313726, 0, 1, 0.4293986, 0.903476, 0.5744499, 1
 gradient = SubResource("Gradient_j4aoe")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4aoe"]
-size = Vector2(121.67833, 125.87413)
+size = Vector2(22, 24)
 
-[sub_resource type="Gradient" id="Gradient_cmunl"]
-offsets = PackedFloat32Array(0, 0.66, 1)
-colors = PackedColorArray(0.2513166, 0.222422, 0, 1, 0.74544764, 0.7356235, 0.66, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_d3xhb"]
-gradient = SubResource("Gradient_cmunl")
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1gsm"]
+radius = 28.071337
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1gsm"]
 atlas = ExtResource("3_d3xhb")
@@ -57,6 +106,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1gsm"]
+size = Vector2(20, 13)
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cmunl"]
 bounce = 0.8
 
@@ -66,7 +118,15 @@ size = Vector2(126, 120)
 [node name="Scene" type="Node2D"]
 physics_interpolation_mode = 1
 
+[node name="TileMap" type="Node2D" parent="."]
+
+[node name="Floor_Tiles" type="TileMapLayer" parent="TileMap"]
+position = Vector2(22, 3)
+tile_map_data = PackedByteArray("AAAFAPz/AAAAAAIAAAAFAP3/AAACAAAAAAAEAP3/AAABAAIAAAADAP3/AAACAAAAAAACAP7/AAADAAIAAAACAP//AAABAAIAAAABAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAAAAP//AAACAAAAAAAAAP7/AAADAAIAAAABAP3/AAABAAIAAAABAPz/AAACAAAAAAACAPz/AAACAAAAAAADAPz/AAACAAAAAAAEAPz/AAACAAAAAAAEAP7/AAABAAIAAAAEAP//AAABAAIAAAAEAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAIAAAACAAAAAAACAAMAAAACAAAAAAABAAMAAAACAAAAAAABAAIAAAACAAAAAAAAAAIAAAACAAAAAAABAP7/AAADAAIAAAADAP7/AAACAAAAAAAGAP3/AAAAAAIAAAAGAP7/AAACAAAAAAAHAP7/AAACAAAAAAAIAP//AAACAAAAAAAJAP7/AAACAAAAAAAKAP3/AAACAAAAAAALAPz/AAACAAAAAAALAPv/AAACAAAAAAAKAPv/AAACAAAAAAAJAPr/AAACAAAAAAAJAPn/AAACAAAAAAAIAPn/AAACAAAAAAAHAPn/AAACAAAAAAAGAPn/AAACAAAAAAAFAPn/AAACAAAAAAAEAPn/AAACAAAAAAADAPn/AAACAAAAAAACAPn/AAACAAAAAAABAPr/AAAAAAIAAAAAAPv/AAACAAAAAAD///v/AAACAAAAAAD+//z/AAACAAAAAAD9//3/AAADAAIAAAD9//7/AAACAAAAAAD9////AAADAAIAAAD9/wAAAAACAAAAAAD9/wEAAAACAAAAAAD+/wEAAAACAAAAAAD+/wIAAAACAAAAAAD//wIAAAACAAAAAAAAAAMAAAACAAAAAAABAAQAAAACAAAAAAACAAQAAAACAAAAAAADAAQAAAACAAAAAAAEAAQAAAACAAAAAAAFAAQAAAACAAAAAAAGAAQAAAACAAAAAAAHAAQAAAACAAAAAAAIAAMAAAAAAAIAAAAJAAIAAAACAAAAAAAKAAIAAAACAAAAAAAKAAEAAAACAAAAAAAKAAAAAAACAAAAAAALAP//AAACAAAAAAALAP7/AAACAAAAAAAKAPz/AAACAAAAAAALAP3/AAACAAAAAAAEAAIAAAAAAAIAAAAEAAEAAAAAAAIAAAAFAAEAAAACAAAAAAAFAAAAAAAAAAIAAAAFAP//AAAAAAIAAAAFAP7/AAAAAAIAAAAGAP//AAACAAAAAAAGAAAAAAACAAAAAAAGAAEAAAACAAAAAAAGAAIAAAAAAAIAAAAFAAIAAAAAAAIAAAAFAAMAAAACAAAAAAAEAAMAAAAAAAIAAAADAAMAAAAAAAIAAAAGAAMAAAACAAAAAAAHAAMAAAAAAAIAAAAHAAIAAAACAAAAAAAHAAEAAAACAAAAAAAHAAAAAAACAAAAAAAHAP//AAACAAAAAAAIAAAAAAACAAAAAAAIAAEAAAACAAAAAAAIAAIAAAACAAAAAAAJAAEAAAACAAAAAAAJAAAAAAACAAAAAAAJAP//AAACAAAAAAAKAP//AAACAAAAAAAKAP7/AAACAAAAAAAFAPr/AAACAAAAAAAEAPr/AAACAAAAAAADAPr/AAACAAAAAAACAPr/AAACAAAAAAACAPv/AAAAAAIAAAABAPv/AAACAAAAAAADAPv/AAAAAAIAAAAEAPv/AAAAAAIAAAAFAPv/AAACAAAAAAAGAPv/AAACAAAAAAAGAPr/AAACAAAAAAAHAPr/AAACAAAAAAAHAPv/AAACAAAAAAAHAPz/AAACAAAAAAAGAPz/AAAAAAIAAAAHAP3/AAAAAAIAAAAIAP3/AAACAAAAAAAIAPz/AAACAAAAAAAIAPv/AAACAAAAAAAIAPr/AAACAAAAAAAJAPv/AAACAAAAAAAJAPz/AAACAAAAAAAJAP3/AAACAAAAAAAIAP7/AAACAAAAAAADAP//AAACAAAAAAADAAAAAAABAAIAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAABAAEAAAACAAAAAAACAAIAAAACAAAAAAD///3/AAACAAAAAAD///z/AAACAAAAAAAAAPz/AAACAAAAAAAAAP3/AAACAAAAAAD+//3/AAADAAIAAAD+//7/AAACAAAAAAD+////AAADAAIAAAD+/wAAAAACAAAAAAD//wAAAAACAAAAAAD/////AAADAAIAAAD///7/AAACAAAAAAD//wEAAAACAAAAAAABAP//AAACAAAAAAACAP3/AAACAAAAAAD1//j/AAACAAAAAAD1//n/AAACAAAAAAD1//r/AAACAAAAAAD1//v/AAACAAAAAAD1//z/AAACAAAAAAD1//3/AAACAAAAAAD1//7/AAACAAAAAAD1////AAACAAAAAAD1/wAAAAACAAAAAAD1/wEAAAACAAAAAAD1/wIAAAACAAAAAAD1/wMAAAACAAAAAAD1/wQAAAACAAAAAAD2//j/AAACAAAAAAD2//n/AAACAAAAAAD2//r/AAACAAAAAAD2//v/AAACAAAAAAD2//z/AAACAAAAAAD2//3/AAACAAAAAAD2//7/AAACAAAAAAD2////AAACAAAAAAD2/wAAAAACAAAAAAD2/wEAAAACAAAAAAD2/wIAAAACAAAAAAD2/wMAAAACAAAAAAD2/wQAAAACAAAAAAD3//j/AAACAAAAAAD3//n/AAACAAAAAAD3//r/AAACAAAAAAD3//v/AAACAAAAAAD3//z/AAACAAAAAAD3//3/AAACAAAAAAD3//7/AAACAAAAAAD3////AAACAAAAAAD3/wAAAAACAAAAAAD3/wEAAAACAAAAAAD3/wIAAAACAAAAAAD3/wMAAAACAAAAAAD3/wQAAAACAAAAAAD4//j/AAACAAAAAAD4//n/AAACAAAAAAD4//r/AAACAAAAAAD4//v/AAACAAAAAAD4//z/AAACAAAAAAD4//3/AAACAAAAAAD4//7/AAACAAAAAAD4////AAACAAAAAAD4/wAAAAACAAAAAAD4/wEAAAABAAIAAAD4/wIAAAABAAIAAAD4/wMAAAACAAAAAAD4/wQAAAACAAAAAAD5//j/AAACAAAAAAD5//n/AAACAAAAAAD5//r/AAACAAAAAAD5//v/AAACAAAAAAD5//z/AAACAAAAAAD5//3/AAACAAAAAAD5//7/AAACAAAAAAD5////AAACAAAAAAD5/wAAAAABAAIAAAD5/wEAAAABAAIAAAD5/wIAAAACAAAAAAD5/wMAAAACAAAAAAD5/wQAAAACAAAAAAD6//j/AAACAAAAAAD6//n/AAACAAAAAAD6//r/AAACAAAAAAD6//v/AAACAAAAAAD6//z/AAADAAIAAAD6//3/AAADAAIAAAD6//7/AAACAAAAAAD6////AAABAAIAAAD6/wAAAAABAAIAAAD6/wEAAAACAAAAAAD6/wIAAAACAAAAAAD6/wMAAAACAAAAAAD6/wQAAAACAAAAAAD7//j/AAACAAAAAAD7//n/AAACAAAAAAD7//r/AAACAAAAAAD7//v/AAACAAAAAAD7//z/AAADAAIAAAD7//3/AAACAAAAAAD7//7/AAADAAIAAAD7////AAABAAIAAAD7/wAAAAACAAAAAAD7/wEAAAACAAAAAAD7/wIAAAACAAAAAAD7/wMAAAACAAAAAAD7/wQAAAACAAAAAAD8//j/AAACAAAAAAD8//n/AAACAAAAAAD8//r/AAACAAAAAAD8//v/AAACAAAAAAD8//z/AAADAAIAAAD8//3/AAACAAAAAAD8//7/AAACAAAAAAD8////AAADAAIAAAD8/wAAAAACAAAAAAD8/wEAAAACAAAAAAD8/wIAAAACAAAAAAD8/wMAAAACAAAAAAD8/wQAAAACAAAAAAD9//j/AAACAAAAAAD9//n/AAACAAAAAAD9//r/AAACAAAAAAD9//v/AAACAAAAAAD9//z/AAACAAAAAAD9/wIAAAACAAAAAAD9/wMAAAACAAAAAAD9/wQAAAACAAAAAAD+//j/AAACAAAAAAD+//n/AAACAAAAAAD+//r/AAACAAAAAAD+//v/AAACAAAAAAD+/wMAAAACAAAAAAD+/wQAAAACAAAAAAD///j/AAACAAAAAAD///n/AAACAAAAAAD///r/AAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAAAAPj/AAACAAAAAAAAAPn/AAACAAAAAAAAAPr/AAAAAAIAAAAAAAQAAAACAAAAAAABAPj/AAACAAAAAAABAPn/AAACAAAAAAACAPj/AAACAAAAAAADAPj/AAACAAAAAAAEAPj/AAACAAAAAAAFAPj/AAACAAAAAAAGAPj/AAACAAAAAAAHAPj/AAACAAAAAAAIAPj/AAACAAAAAAAIAAQAAAACAAAAAAAJAPj/AAACAAAAAAAJAAMAAAAAAAIAAAAJAAQAAAACAAAAAAAKAPj/AAACAAAAAAAKAPn/AAACAAAAAAAKAPr/AAACAAAAAAAKAAMAAAAAAAIAAAAKAAQAAAACAAAAAAALAPj/AAACAAAAAAALAPn/AAACAAAAAAALAPr/AAACAAAAAAALAAAAAAACAAAAAAALAAEAAAACAAAAAAALAAIAAAACAAAAAAALAAMAAAACAAAAAAALAAQAAAACAAAAAAAMAPj/AAACAAAAAAAMAPn/AAACAAAAAAAMAPr/AAACAAAAAAAMAPv/AAACAAAAAAAMAPz/AAACAAAAAAAMAP3/AAACAAAAAAAMAP7/AAACAAAAAAAMAP//AAACAAAAAAAMAAAAAAACAAAAAAAMAAEAAAACAAAAAAAMAAIAAAACAAAAAAAMAAMAAAACAAAAAAAMAAQAAAACAAAAAAAGAAcAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_hsfv8")
+
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(91, -125.5)
 scale = Vector2(39.468746, 26.328117)
 texture = SubResource("GradientTexture2D_cmunl")
@@ -74,34 +134,32 @@ texture = SubResource("GradientTexture2D_cmunl")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(34, -2)
 scale = Vector2(1.3986014, 1.3986014)
-zoom = Vector2(0.765, 0.765)
+zoom = Vector2(4, 4)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(363, -29)
+[node name="NPC" type="StaticBody2D" parent="."]
+position = Vector2(53, -6)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
 shape = SubResource("RectangleShape2D_j4aoe")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="NPC"]
 rotation = -3.1415925
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_j4aoe")
 
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(1.5258789e-05, -0.9999962)
-scale = Vector2(2.0625005, 1.90625)
-texture = SubResource("GradientTexture2D_d3xhb")
+[node name="InteractableArea" type="Area2D" parent="NPC"]
+script = ExtResource("3_66tf5")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/InteractableArea"]
+shape = SubResource("CircleShape2D_h1gsm")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 physics_interpolation_mode = 1
 motion_mode = 1
 script = ExtResource("2_j4aoe")
 move_speed = 200.0
 metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(153, -28.000004)
-shape = SubResource("RectangleShape2D_j4aoe")
 
 [node name="Player" type="Sprite2D" parent="Player"]
 visible = false
@@ -114,6 +172,10 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dlkmh")
 animation = &"run_right"
 frame_progress = 0.21272919
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_h1gsm")
 
 [node name="RigidBody2D_Player" type="RigidBody2D" parent="."]
 visible = false
@@ -129,3 +191,7 @@ shape = SubResource("RectangleShape2D_cmunl")
 
 [node name="Player" type="Sprite2D" parent="RigidBody2D_Player"]
 texture = ExtResource("1_j4aoe")
+
+[connection signal="body_entered" from="NPC/InteractableArea" to="NPC/InteractableArea" method="_on_body_entered"]
+[connection signal="body_exited" from="NPC/InteractableArea" to="NPC/InteractableArea" method="_on_body_exited"]
+[connection signal="PLAYER_INTERACT_REQUEST" from="Player" to="NPC/InteractableArea" method="_on_player_player_interact_request"]
