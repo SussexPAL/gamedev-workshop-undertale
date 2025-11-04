@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvta1v67dn0hk"]
+
+[ext_resource type="Texture2D" uid="uid://nkqi62x1vsh0" path="res://assets/battle_heart.png" id="1_idkgt"]
+[ext_resource type="Script" uid="uid://1f4jjfxwnhfr" path="res://scripts/battle/battle_player.gd" id="1_kinr6"]
+[ext_resource type="Script" uid="uid://dr72afc4f5uyv" path="res://scenes/rotator.gd" id="3_rca61"]
+
+[sub_resource type="Curve" id="Curve_kinr6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rca61"]
+width = 91
+curve = SubResource("Curve_kinr6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qdv8"]
+size = Vector2(43, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kinr6"]
+size = Vector2(16, 16)
+
+[node name="BattleScene" type="Node2D"]
+texture_filter = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BattleBox" type="Node2D" parent="."]
+script = ExtResource("3_rca61")
+rotate_speed = 4.0
+
+[node name="Rightwall" type="StaticBody2D" parent="BattleBox"]
+position = Vector2(100, 0)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BattleBox/Rightwall"]
+position = Vector2(4.500002, -1.1920929e-06)
+scale = Vector2(0.098901, 200)
+texture = SubResource("CurveTexture_rca61")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleBox/Rightwall"]
+position = Vector2(21.5, 0)
+shape = SubResource("RectangleShape2D_8qdv8")
+
+[node name="Leftwall" type="StaticBody2D" parent="BattleBox"]
+position = Vector2(-100, 0)
+rotation = -3.1415925
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BattleBox/Leftwall"]
+position = Vector2(4.500002, -1.1920929e-06)
+scale = Vector2(0.098901, 200)
+texture = SubResource("CurveTexture_rca61")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleBox/Leftwall"]
+position = Vector2(21.5, 0)
+shape = SubResource("RectangleShape2D_8qdv8")
+
+[node name="Bottomwall" type="StaticBody2D" parent="BattleBox"]
+position = Vector2(0, 100)
+rotation = 1.5707964
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BattleBox/Bottomwall"]
+position = Vector2(4.500002, -1.1920929e-06)
+scale = Vector2(0.098901, 200)
+texture = SubResource("CurveTexture_rca61")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleBox/Bottomwall"]
+position = Vector2(21.5, 0)
+shape = SubResource("RectangleShape2D_8qdv8")
+
+[node name="Topwall" type="StaticBody2D" parent="BattleBox"]
+position = Vector2(0, -100)
+rotation = -1.5707964
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BattleBox/Topwall"]
+position = Vector2(4.500002, -1.1920929e-06)
+scale = Vector2(0.098901, 200)
+texture = SubResource("CurveTexture_rca61")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleBox/Topwall"]
+position = Vector2(21.5, 0)
+shape = SubResource("RectangleShape2D_8qdv8")
+
+[node name="BattlePlayer" type="CharacterBody2D" parent="."]
+script = ExtResource("1_kinr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattlePlayer"]
+shape = SubResource("RectangleShape2D_kinr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="BattlePlayer"]
+texture = ExtResource("1_idkgt")

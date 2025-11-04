@@ -1,9 +1,10 @@
-[gd_scene load_steps=54 format=3 uid="uid://baqji3wqh34ny"]
+[gd_scene load_steps=55 format=3 uid="uid://baqji3wqh34ny"]
 
 [ext_resource type="Script" uid="uid://wmnvbygpv4n6" path="res://scripts/NPC.gd" id="1_h1gsm"]
 [ext_resource type="Script" uid="uid://bsufpe17nr71t" path="res://scripts/camera.gd" id="1_hsfv8"]
 [ext_resource type="Texture2D" uid="uid://dua71w0eg8th2" path="res://icon.svg" id="1_j4aoe"]
 [ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/Player.gd" id="2_j4aoe"]
+[ext_resource type="PackedScene" uid="uid://bvta1v67dn0hk" path="res://scenes/battle_scene.tscn" id="5_y21yg"]
 [ext_resource type="Texture2D" uid="uid://bjw8klfevblbh" path="res://assets/Minimal Dungeon - Asset Pack DEMO/Players/Dwarf/dwarf x1.png" id="6_66tf5"]
 [ext_resource type="PackedScene" uid="uid://2heump0abwv5" path="res://prefabs/interactable_area.tscn" id="6_hsfv8"]
 
@@ -542,6 +543,7 @@ parameters/run/blend_position = Vector2(0, 1)
 position = Vector2(45, -44)
 script = ExtResource("1_h1gsm")
 anim = NodePath("AnimationPlayer")
+battle_scene = ExtResource("5_y21yg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_Jeremy"]
 shape = SubResource("RectangleShape2D_hsfv8")
