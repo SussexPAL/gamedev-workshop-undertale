@@ -1,7 +1,7 @@
 [gd_scene load_steps=55 format=3 uid="uid://baqji3wqh34ny"]
 
 [ext_resource type="Script" uid="uid://wmnvbygpv4n6" path="res://scripts/NPC.gd" id="1_h1gsm"]
-[ext_resource type="Script" uid="uid://bsufpe17nr71t" path="res://scripts/camera.gd" id="1_hsfv8"]
+[ext_resource type="Script" uid="uid://bsufpe17nr71t" path="res://scripts/overworld_camera.gd" id="1_hsfv8"]
 [ext_resource type="Texture2D" uid="uid://dua71w0eg8th2" path="res://icon.svg" id="1_j4aoe"]
 [ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/Player.gd" id="2_j4aoe"]
 [ext_resource type="PackedScene" uid="uid://bvta1v67dn0hk" path="res://scenes/battle_scene.tscn" id="5_y21yg"]

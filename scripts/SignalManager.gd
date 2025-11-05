@@ -9,3 +9,6 @@ are generally/globally useful.
 $SignalManager.SIGNAL_NAME.emit()
 """
 signal PLAYER_INTERACT_REQUEST # Emits when player presses the interact key
+signal DAMAGE_PLAYER(amount:float) # Emits when an entity wants to damage the player
+signal PLAYER_HEALTH_CHANGED(old_health, new_health) # Emits when player's health is altered
+signal PLAYER_DIED # Emits when player dies
