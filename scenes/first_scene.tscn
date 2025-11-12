@@ -1,11 +1,47 @@
-[gd_scene load_steps=21 format=4 uid="uid://baqji3wqh34ny"]
+[gd_scene load_steps=26 format=4 uid="uid://baqji3wqh34ny"]
 
 [ext_resource type="Texture2D" uid="uid://cp0wo3cbx7lrp" path="res://assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="1_h1gsm"]
+[ext_resource type="Script" uid="uid://c47lno87xlo1p" path="res://scripts/cool_button.gd" id="1_hsfv8"]
 [ext_resource type="Texture2D" uid="uid://dua71w0eg8th2" path="res://icon.svg" id="1_j4aoe"]
 [ext_resource type="Script" uid="uid://cuwk8lux24ovw" path="res://scripts/player_movement.gd" id="2_j4aoe"]
 [ext_resource type="Script" uid="uid://bt5qxuytrs6s6" path="res://scenes/interactable_area.gd" id="3_66tf5"]
 [ext_resource type="Script" uid="uid://ctmsvo3l051gb" path="res://scripts/simulated_movement_example.gd" id="3_cmunl"]
 [ext_resource type="Texture2D" uid="uid://bjw8klfevblbh" path="res://assets/Minimal Dungeon - Asset Pack DEMO/Players/Dwarf/dwarf x1.png" id="3_d3xhb"]
+[ext_resource type="PackedScene" uid="uid://v0ti7scth2r4" path="res://scenes/battle_scene.tscn" id="5_opxuv"]
+
+[sub_resource type="Theme" id="Theme_hsfv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opxuv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.87058824, 0.8039216, 0.627451)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsfv8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.22352941, 0.22352941, 0.8901961, 0.89411765)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_66tf5"]
 texture = ExtResource("1_h1gsm")
@@ -118,6 +154,23 @@ size = Vector2(126, 120)
 [node name="Scene" type="Node2D"]
 physics_interpolation_mode = 1
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = -1
+anchor_right = 0.056
+anchor_bottom = 0.085
+offset_right = -24.512001
+offset_bottom = -15.080002
+
+[node name="Cool Button" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_hsfv8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_opxuv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hsfv8")
+text = "Press Me :3"
+script = ExtResource("1_hsfv8")
+
 [node name="TileMap" type="Node2D" parent="."]
 
 [node name="Floor_Tiles" type="TileMapLayer" parent="TileMap"]
@@ -150,6 +203,7 @@ texture = ExtResource("1_j4aoe")
 
 [node name="InteractableArea" type="Area2D" parent="NPC"]
 script = ExtResource("3_66tf5")
+battle_scene = ExtResource("5_opxuv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/InteractableArea"]
 shape = SubResource("CircleShape2D_h1gsm")
@@ -192,6 +246,7 @@ shape = SubResource("RectangleShape2D_cmunl")
 [node name="Player" type="Sprite2D" parent="RigidBody2D_Player"]
 texture = ExtResource("1_j4aoe")
 
+[connection signal="pressed" from="UI/HBoxContainer/Cool Button" to="UI/HBoxContainer/Cool Button" method="_on_pressed"]
 [connection signal="body_entered" from="NPC/InteractableArea" to="NPC/InteractableArea" method="_on_body_entered"]
 [connection signal="body_exited" from="NPC/InteractableArea" to="NPC/InteractableArea" method="_on_body_exited"]
 [connection signal="PLAYER_INTERACT_REQUEST" from="Player" to="NPC/InteractableArea" method="_on_player_player_interact_request"]

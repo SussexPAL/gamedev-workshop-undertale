@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://v0ti7scth2r4"]
+
+[ext_resource type="Texture2D" uid="uid://cdm72tbpn4omi" path="res://assets/Minimal Dungeon - Asset Pack DEMO/color palette (16 Bital).png" id="1_idkgt"]
+
+[sub_resource type="Gradient" id="Gradient_fkrth"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_idkgt"]
+gradient = SubResource("Gradient_fkrth")
+
+[node name="BattleScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+position = Vector2(37.00003, 16.5)
+scale = Vector2(24.531248, 14.578125)
+texture = SubResource("GradientTexture2D_idkgt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(268, 134)
+scale = Vector2(4.1904764, 4.1904764)
+texture = ExtResource("1_idkgt")
