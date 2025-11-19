@@ -11,3 +11,4 @@ func _on_successful_interact():
 	print("The player is interacting with me!")
 	anim.play("pulse") # Makes the NPC bounce
 	get_tree().change_scene_to_packed(battle_scene)
+ 

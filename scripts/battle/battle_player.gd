@@ -1,15 +1,26 @@
 extends CharacterBody2D
 
+# Gameplay properties
 @export var move_speed:float = 300
-var movement_input = Vector2(0,0)
 @export var hp_max: float = 1000
-var hp_current:float = hp_max
 @export var invincible_duration:float = 2
 @export var invincible_opacity:float = .5
-var invincible = false
+
+# References
 @export var sprite:Sprite2D
 
+# Player state
+var movement_input:Vector2		# Maintains the player's current desired movement direction
+var hp_current:float			# Maintains the player's current HP
+var invincible:bool				# True if player is currently invincible, false otherwise
+
 func _ready() -> void:
+	# Set default values
+	movement_input = Vector2(0,0)
+	hp_current = hp_max
+	invincible = false
+	
+	# Connect signals
 	SignalManager.DAMAGE_PLAYER.connect(take_damage)
 
 func _process(_delta):
@@ -18,6 +29,8 @@ func _process(_delta):
 func _physics_process(_delta):
 	velocity = movement_input * move_speed 		# Set player velocity based on most recent input
 	move_and_slide() 							# Move player based on current velocity
+
+# --------------------------------------------------------------------------------------------------
 
 func manage_input():
 	# WASD Movement

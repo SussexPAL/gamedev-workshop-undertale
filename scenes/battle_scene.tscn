@@ -1,11 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvta1v67dn0hk"]
+[gd_scene load_steps=19 format=3 uid="uid://bvta1v67dn0hk"]
 
-[ext_resource type="Script" uid="uid://cpacu2ww6dsrv" path="res://scenes/battle_camera.gd" id="1_1i8jf"]
+[ext_resource type="Script" uid="uid://cpacu2ww6dsrv" path="res://scripts/battle/battle_camera.gd" id="1_1i8jf"]
 [ext_resource type="Texture2D" uid="uid://nkqi62x1vsh0" path="res://assets/battle_heart.png" id="1_idkgt"]
 [ext_resource type="Script" uid="uid://1f4jjfxwnhfr" path="res://scripts/battle/battle_player.gd" id="1_kinr6"]
+[ext_resource type="Script" uid="uid://bc7ro1532ci14" path="res://scripts/battle/battle_manager.gd" id="1_svpld"]
 [ext_resource type="FontFile" uid="uid://buwy42dx6d2lq" path="res://fonts/Minecraft.ttf" id="3_rca61"]
 [ext_resource type="Script" uid="uid://dcdtgc1cvymna" path="res://scripts/battle/attack_pellet.gd" id="4_8qdv8"]
-[ext_resource type="Script" uid="uid://bubmaygcyh6dx" path="res://scenes/Player_Healthbar.gd" id="4_pxwbd"]
+[ext_resource type="Script" uid="uid://bubmaygcyh6dx" path="res://scripts/battle/Player_Healthbar.gd" id="4_pxwbd"]
 
 [sub_resource type="Gradient" id="Gradient_j4aoe"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -53,6 +54,7 @@ gradient = SubResource("Gradient_8qdv8")
 
 [node name="BattleScene" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_svpld")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 75)
@@ -129,6 +131,7 @@ shape = SubResource("RectangleShape2D_8qdv8")
 position = Vector2(0, 76.00001)
 script = ExtResource("1_kinr6")
 move_speed = 180.0
+hp_max = 100.0
 invincible_duration = 0.8
 sprite = NodePath("Sprite2D")
 
